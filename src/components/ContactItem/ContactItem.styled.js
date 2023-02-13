@@ -24,4 +24,11 @@ export const Button = styled.button`
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+  transition: background-color 250ms ease;
+
+  :hover,
+  :focus {
+    background-color: #db5439;
+  }
 `;
