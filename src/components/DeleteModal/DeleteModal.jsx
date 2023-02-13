@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Backdrop, Button, ModalWindow, Wrapper } from './DeleteModal.styled';
 import { ThemeProvider } from 'styled-components';
-import { deleteContact } from 'redux/contacts.thunk';
+import { deleteContact } from 'redux/contscts/contacts.thunk';
 
 Button.defaultProps = {
   theme: {
