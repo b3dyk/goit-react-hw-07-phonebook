@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/contacts.selector';
+import { selectContacts } from 'redux/contacts.selector';
 
 import { addContact } from 'redux/contacts.thunk';
 import { Button, Form, Input, Label } from './ContactForm.styled';
 
 export const ContactForm = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const [name, setName] = useState(() => localStorage.getItem('name') ?? '');
   const [phone, setPhone] = useState(() => localStorage.getItem('phone') ?? '');
@@ -34,7 +34,7 @@ export const ContactForm = () => {
     evt.preventDefault();
 
     const isNameExist = Boolean(
-      contacts.find(contact => contact.name === name)
+      contacts.some(contact => contact.name === name)
     );
 
     if (isNameExist) {
@@ -60,7 +60,7 @@ export const ContactForm = () => {
           type="text"
           name="name"
           value={name}
-          placeholder="John Dough"
+          placeholder="John Dou"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           onChange={handleChange}
