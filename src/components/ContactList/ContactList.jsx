@@ -8,7 +8,7 @@ import {
   selectFilteredContacts,
   selectIsLoading,
 } from 'redux/selectors';
-import { fetchContacts } from 'redux/contscts/contacts.thunk';
+import { fetchContacts } from 'redux/contacts/contacts.thunk';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
