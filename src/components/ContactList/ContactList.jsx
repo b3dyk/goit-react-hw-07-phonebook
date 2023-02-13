@@ -9,6 +9,7 @@ import {
   selectIsLoading,
 } from 'redux/selectors';
 import { fetchContacts } from 'redux/contacts/contacts.thunk';
+import { Loader } from 'components/Loader/Loader';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export const ContactList = () => {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loader />}
       {error && <p>Oops, something went wrong</p>}
       {!isLoading && !error && (
         <List>
