@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { deleteContactAction } from 'redux/contacts.slice';
 import { Backdrop, Button, ModalWindow, Wrapper } from './DeleteModal.styled';
 import { ThemeProvider } from 'styled-components';
+import { deleteContact, fetchContacts } from 'redux/contacts.thunk';
 
 Button.defaultProps = {
   theme: {
@@ -25,7 +25,8 @@ export const DeleteModal = ({ id, onClose }) => {
   };
 
   const handleDelete = () => {
-    dispatch(deleteContactAction(id));
+    dispatch(deleteContact(id));
+
     onClose(false);
   };
   return (

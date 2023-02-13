@@ -1,18 +1,15 @@
-import { nanoid } from '@reduxjs/toolkit';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/contacts.selector';
 
-import { addContactAction } from 'redux/contacts.slice';
+import { addContact, fetchContacts } from 'redux/contacts.thunk';
 import { Button, Form, Input, Label } from './ContactForm.styled';
 
 export const ContactForm = () => {
   const contacts = useSelector(getContacts);
 
   const [name, setName] = useState(() => localStorage.getItem('name') ?? '');
-  const [number, setNumber] = useState(
-    () => localStorage.getItem('number') ?? ''
-  );
+  const [phone, setPhone] = useState(() => localStorage.getItem('phone') ?? '');
 
   const dispatch = useDispatch();
 
@@ -23,9 +20,9 @@ export const ContactForm = () => {
         setName(value);
         break;
 
-      case 'number':
-        localStorage.setItem('number', value);
-        setNumber(value);
+      case 'phone':
+        localStorage.setItem('phone', value);
+        setPhone(value);
         break;
 
       default:
@@ -47,14 +44,12 @@ export const ContactForm = () => {
       return;
     }
 
-    const contact = { id: nanoid(), name, number };
-
-    dispatch(addContactAction(contact));
+    dispatch(addContact({ name, phone }));
 
     localStorage.removeItem('name');
-    localStorage.removeItem('number');
+    localStorage.removeItem('phone');
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -77,8 +72,8 @@ export const ContactForm = () => {
         <span>Number</span>
         <Input
           type="tel"
-          name="number"
-          value={number}
+          name="phone"
+          value={phone}
           placeholder="123-45-67"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"

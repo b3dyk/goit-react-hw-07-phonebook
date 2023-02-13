@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { Button, Item, Text } from './ContactItem.styled';
 import { DeleteModal } from 'components/DeleteModal/DeleteModal';
 
-export const ContactItem = ({ id, name, number }) => {
+export const ContactItem = ({ id, name, phone }) => {
   const [deleteModal, setDeleteModal] = useState(false);
   return (
     <Item>
       <Text>
-        {name}: {number}
+        {name}: {phone}
       </Text>
       <Button type="button" onClick={() => setDeleteModal(true)}>
         Delete
@@ -21,5 +21,5 @@ export const ContactItem = ({ id, name, number }) => {
 ContactItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
 };
